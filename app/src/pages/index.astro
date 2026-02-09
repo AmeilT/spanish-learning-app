@@ -6,6 +6,7 @@ import { getCategories } from '../lib/categories';
 
 const categories = getCategories();
 const notes = getAllNotes();
+const base = import.meta.env.BASE_URL;
 
 const noteInfos = notes.map((n) => ({
   title: n.title,
@@ -58,7 +59,7 @@ function cardGradient(slug: string) {
 
   <!-- Search -->
   <div class="mb-14 max-w-md">
-    <SearchBar client:load notes={noteInfos} />
+    <SearchBar client:load notes={noteInfos} base={base} />
   </div>
 
   <!-- Category Sections -->
@@ -78,7 +79,7 @@ function cardGradient(slug: string) {
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {cat.notes.map((note) => (
               <a
-                href={`/${note.slug}`}
+                href={`${base}${note.slug}`}
                 class="group block bg-slate-800/40 border border-white/10 rounded-2xl overflow-hidden hover:border-blue-500/50 transition-all"
               >
                 {/* Visual Header */}

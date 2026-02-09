@@ -23,12 +23,13 @@ if (!note) {
 
 const html = renderMarkdown(note.content);
 const hasToc = note.headings.length >= 3;
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title={`${note.title} — Spanish Notes`}>
   <!-- Breadcrumb -->
   <div class="flex items-center gap-2 text-xs text-slate-500 mb-6">
-    <a href="/" class="hover:text-white transition-colors">&larr; Directory</a>
+    <a href={base} class="hover:text-white transition-colors">&larr; Directory</a>
     <span>/</span>
     <span>{note.category}</span>
   </div>
