@@ -27,17 +27,15 @@ jobs:
           node-version: 22
 
       - name: Install dependencies
-        working-directory: ./app
         run: npm ci
 
       - name: Build Astro
-        working-directory: ./app
         run: npx astro build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./app/dist
+          path: ./dist
 
   deploy:
     needs: build

@@ -17,7 +17,7 @@ export interface Note {
   headings: TocEntry[];
 }
 
-const NOTES_DIR = path.resolve(process.cwd(), '..');
+const NOTES_DIR = process.cwd();
 
 function slugify(text: string): string {
   return text
