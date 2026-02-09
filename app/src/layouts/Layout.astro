@@ -1,0 +1,183 @@
+---
+interface Props {
+  title: string;
+  bare?: boolean;
+}
+
+const { title, bare = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>" />
+  </head>
+  <body class="bg-slate-950 text-slate-300 font-sans antialiased min-h-screen">
+    <header class="border-b border-white/5">
+      <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+        <a href="/" class="text-sm font-semibold text-white tracking-tight hover:text-blue-400 transition-colors">
+          spanish/notes
+        </a>
+        <a href="/" class="text-xs text-slate-500 hover:text-white transition-colors">
+          Directory
+        </a>
+      </div>
+    </header>
+
+    {bare ? (
+      <main class="max-w-6xl mx-auto px-6 py-16">
+        <slot />
+      </main>
+    ) : (
+      <main class="max-w-6xl mx-auto px-6 py-16">
+        <div class="bg-slate-900/50 backdrop-blur-sm border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl">
+          <slot />
+        </div>
+      </main>
+    )}
+  </body>
+</html>
+
+<style is:global>
+  /* ─── High-End Prose Overrides ─── */
+
+  .prose {
+    line-height: 1.8;
+  }
+
+  /* Massive section spacing */
+  .prose > h2 {
+    margin-top: 3rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.025em;
+  }
+
+  .prose > h1 {
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.025em;
+  }
+
+  .prose > h3 {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    color: #e2e8f0; /* slate-200 */
+  }
+
+  /* Paragraph breathing room */
+  .prose > p {
+    margin-bottom: 1.5rem;
+  }
+
+  .prose > ul,
+  .prose > ol {
+    margin-bottom: 1.75rem;
+  }
+
+  .prose li {
+    margin-bottom: 0.35rem;
+  }
+
+  /* ─── Tables: Stripe + Padding ─── */
+
+  .prose table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.875rem;
+  }
+
+  .prose thead th {
+    padding: 0.875rem 1rem;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #94a3b8; /* slate-400 */
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    text-align: left;
+  }
+
+  .prose tbody td {
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .prose tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .prose tbody tr:hover {
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  /* ─── Blockquote as Callout/Tip ─── */
+
+  .prose blockquote {
+    background: rgba(37, 99, 235, 0.08);
+    border-left: 4px solid #60a5fa;
+    border-radius: 0 0.5rem 0.5rem 0;
+    padding: 1.25rem 1.5rem;
+    margin: 1.75rem 0;
+    font-style: normal;
+    color: #cbd5e1; /* slate-300 */
+  }
+
+  .prose blockquote p {
+    margin: 0;
+  }
+
+  .prose blockquote p + p {
+    margin-top: 0.75rem;
+  }
+
+  /* ─── Horizontal rules ─── */
+
+  .prose hr {
+    border-color: rgba(255, 255, 255, 0.06);
+    margin: 3rem 0;
+  }
+
+  /* ─── Code ─── */
+
+  .prose :not(pre) > code {
+    font-size: 0.8125rem;
+    padding: 0.2em 0.45em;
+    border-radius: 0.3rem;
+    background: rgba(30, 41, 59, 0.8);
+    color: #93c5fd; /* blue-300 */
+  }
+
+  .prose :not(pre) > code::before,
+  .prose :not(pre) > code::after {
+    content: none;
+  }
+
+  /* ─── Strong ─── */
+
+  .prose strong {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  /* ─── Links ─── */
+
+  .prose a {
+    color: #60a5fa;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(96, 165, 250, 0.3);
+    transition: text-decoration-color 0.2s;
+  }
+
+  .prose a:hover {
+    text-decoration-color: #60a5fa;
+  }
+</style>
