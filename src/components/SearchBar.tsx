@@ -35,7 +35,7 @@ export default function SearchBar({ notes, base = '/' }: Props) {
           {filtered.map((note) => (
             <a
               key={note.slug}
-              href={`${base}${note.slug}`}
+              href={`${base}/${note.slug}`}
               className="block px-4 py-2.5 hover:bg-slate-700 transition-colors border-b border-slate-700/50 last:border-0 text-sm text-white"
             >
               {note.title}
